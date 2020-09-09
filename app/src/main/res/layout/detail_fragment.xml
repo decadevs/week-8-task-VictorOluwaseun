@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".detail.DetailFragment"
+    >
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    >
+    <!--        android:layout_marginTop="414dp"-->
+
+    <ImageView
+        android:id="@+id/ivMainPhotoImage"
+        android:layout_width="0dp"
+        android:layout_height="266dp"
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="T Placeholder"
+        android:textColor="#de000000"
+        android:textSize="39sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivMainPhotoImage" />
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="$100,000"
+        android:textColor="#de000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <CheckBox
+        android:id="@+id/cbAbilities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="Abilities"
+        app:layout_constraintBottom_toBottomOf="@+id/cbAll"
+        app:layout_constraintEnd_toStartOf="@+id/cbForms"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cbAll"
+        app:layout_constraintTop_toTopOf="@+id/cbAll"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/cbMoves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="Moves"
+        app:layout_constraintBottom_toBottomOf="@+id/cbIndices"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cbIndices"
+        app:layout_constraintTop_toTopOf="@+id/cbIndices"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/cbForms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="Forms"
+        app:layout_constraintBottom_toBottomOf="@+id/cbAbilities"
+        app:layout_constraintEnd_toStartOf="@+id/cbIndices"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cbAbilities"
+        app:layout_constraintTop_toTopOf="@+id/cbAbilities"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/cbIndices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="Indices"
+        app:layout_constraintBottom_toBottomOf="@+id/cbForms"
+        app:layout_constraintEnd_toStartOf="@+id/cbMoves"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cbForms"
+        app:layout_constraintTop_toTopOf="@+id/cbForms"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/cbAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="All"
+        android:checked="true"
+        app:layout_constraintEnd_toStartOf="@+id/cbAbilities"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/tvSubtitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvBody"-->
+<!--        android:layout_width="1dp"-->
+<!--        android:layout_height="16dp"-->
+<!--        android:layout_marginTop="136dp"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/cbAll"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/cbAbilities" />-->
+
+    <TextView
+        android:id="@+id/tvAbilites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Abillites"
+        app:layout_constraintStart_toStartOf="@+id/cbAll"
+        app:layout_constraintTop_toBottomOf="@+id/cbAll" />
+<!--    Subtext for abilities-->
+    <TextView
+        android:id="@+id/tvAbilitesSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Abillites Holders"
+        app:layout_constraintStart_toStartOf="@+id/tvAbilites"
+        app:layout_constraintTop_toBottomOf="@+id/tvAbilites" />
+
+
+    <TextView
+        android:id="@+id/tvForms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Forms"
+        app:layout_constraintStart_toStartOf="@+id/tvAbilites"
+        app:layout_constraintTop_toBottomOf="@+id/tvAbilitesSub" />
+
+    <TextView
+        android:id="@+id/tvFormsSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Forms sub"
+        app:layout_constraintStart_toStartOf="@+id/tvForms"
+        app:layout_constraintTop_toBottomOf="@+id/tvForms" />
+
+    <TextView
+        android:id="@+id/tvIndices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Indices"
+        app:layout_constraintStart_toStartOf="@+id/tvFormsSub"
+        app:layout_constraintTop_toBottomOf="@+id/tvFormsSub" />
+
+    <TextView
+        android:id="@+id/tvIndicesSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Indices holder"
+        app:layout_constraintStart_toStartOf="@+id/tvIndices"
+        app:layout_constraintTop_toBottomOf="@+id/tvIndices" />
+
+    <TextView
+        android:id="@+id/tvMoves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Moves"
+        app:layout_constraintStart_toStartOf="@+id/tvIndicesSub"
+        app:layout_constraintTop_toBottomOf="@+id/tvIndicesSub" />
+
+    <TextView
+        android:id="@+id/tvMovesSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Moves holder"
+        app:layout_constraintStart_toStartOf="@+id/tvMoves"
+        app:layout_constraintTop_toBottomOf="@+id/tvMoves" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
