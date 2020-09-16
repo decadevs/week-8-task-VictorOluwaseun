@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,10 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.decagon.pokemon.util.getName
 import com.decagon.pokemonapp.R
-import com.decagon.pokemonapp.model.Ability
-import com.decagon.pokemonapp.model.Form
-import com.decagon.pokemonapp.model.Move
-import com.decagon.pokemonapp.model.Pokemon
+import com.decagon.pokemonapp.model.*
+import com.decagon.pokemonapp.network.NetworkConnection
 import com.decagon.pokemonapp.network.Result
 import com.decagon.pokemonapp.overview.LiveDataCallBack
 import com.decagon.pokemonapp.overview.PHOTO_URL
@@ -28,6 +25,9 @@ const val PHOTO_URL = "https://pokeres.bastionbot.org/images/pokemon/"
 
 class DetailFragment(private val pokemon: Result) : Fragment() {
     val title: String by lazy { this.getName() }
+
+    val splitedUrl = pokemon.url.split("/")
+    val id = splitedUrl[splitedUrl.size - 2]
 
     private var pokemonDetails: Pokemon? = null
         get() = field
@@ -52,7 +52,6 @@ class DetailFragment(private val pokemon: Result) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         return inflater.inflate(R.layout.detail_fragment, container, false)
     }
 
@@ -62,34 +61,67 @@ class DetailFragment(private val pokemon: Result) : Fragment() {
         val liveDataSuccess = MutableLiveData<Pokemon>()
         val liveDataError = MediatorLiveData<String>()
 
+        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         tvTitle.text = pokemon.name
 
-        val splitedUrl = pokemon.url.split("/")
-        val id = splitedUrl[splitedUrl.size - 2]
+
         Log.i(title, id)
 
         Picasso.get().load("$PHOTO_URL/$id.png").into(ivMainPhotoImage)
 
+        val networkConnection = NetworkConnection(activity?.applicationContext!!)
+        var loadTime = 0
+        networkConnection.observe(requireActivity(), Observer {
+            if (it){
+                if (loadTime>0){
+
+                    tvOfflineMessage2?.visibility = View.GONE
+                    tvOnlineMessage2?.visibility = View.VISIBLE
+                    tvOnlineMessage2?.postDelayed({ tvOnlineMessage2.visibility = View.GONE }, 3000)
+//                    loadTime=0
+                }
+                firePokemonServices()
+            }else{
+                //back online
+//                tvMessage.text = "You are offline"
+                loadTime++
+                tvOnlineMessage2?.visibility = View.GONE
+                tvOfflineMessage2?.visibility = View.VISIBLE
+//                tvMessage.setBackgroundColor((R.color.colorError))
+//                tvMessage.bringToFront()
+//                Toast.makeText(requireContext(), "No network", Toast.LENGTH_LONG).show()
+            }
+        })
+
+    }
+
+    private fun firePokemonServices(){
         viewModel.getPokemonDetails(id, object : LiveDataCallBack {
             override fun <T> getResponse(lifeData: LiveData<T>) {
-                lifeData.observe(viewLifecycleOwner, Observer { poke ->
+                lifeData.observe(requireActivity(), Observer { poke ->
                     val res = poke as Pokemon
                     pokemonDetails = res
-//                     viewModel.setAbilitId(pokemonDetails)
                     renderUI(res)
                 })
             }
 
         })
-
     }
+
+
 
     fun renderUI(data: Pokemon) {
         Log.i(title, "$data")
 
         loadAll()
 
-        tvSubtitle.text = "Height: " + pokemonDetails!!.height.toString()
+        tvSubtitle.text = "Height: " + pokemonDetails!!.height.toString() + "\nWeight: " + pokemonDetails!!.weight.toString()
 
         cbAll.setOnCheckedChangeListener { button, bool ->
             when (bool) {
@@ -202,14 +234,14 @@ class DetailFragment(private val pokemon: Result) : Fragment() {
 
     private fun loadIndices() {
         cbAll.isChecked = false
-
+        populateIndices(pokemonDetails!!.gameIndices)
     }
 
     private fun populateAbilites(abilites: List<Ability>){
         var str = ""
 
         for (ability in abilites){
-            str += "name "+ ability.ability.name + "\n"
+            str += ability.ability.name + "\n"
         }
 
         tvAbilitesSub.text = str
@@ -219,7 +251,7 @@ class DetailFragment(private val pokemon: Result) : Fragment() {
         var str = ""
 
         for (form in forms){
-            str += "name "+ form.name + "\n"
+            str +=  form.name + "\n"
         }
 
         tvFormsSub.text = str
@@ -229,9 +261,18 @@ class DetailFragment(private val pokemon: Result) : Fragment() {
         var str = ""
 
         for (move in moves){
-            str += "name "+ move.move.name + "\n"
+            str += move.move.name + ", "
         }
 
         tvMovesSub.text = str
+    }
+
+    private fun populateIndices(indices: List<GameIndice>){
+        var str = ""
+
+        for (indice in indices){
+            str += indice.version.name + " "
+        }
+        tvIndicesSub.text = str
     }
 }

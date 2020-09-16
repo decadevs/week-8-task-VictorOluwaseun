@@ -1,11 +1,14 @@
 package com.decagon.pokemonapp.overview
 
+import android.net.ConnectivityManager
 import android.util.Log
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.decagon.pokemon.util.getName
+import com.decagon.pokemonapp.network.NetworkStatusChecker
 import com.decagon.pokemonapp.network.PokemonApi
 import com.decagon.pokemonapp.network.PokemonProperty
 import kotlinx.coroutines.launch
@@ -16,6 +19,12 @@ import com.decagon.pokemonapp.network.Result
 
 
 class OverviewViewModel : ViewModel() {
+
+//    private val networkStatusChecker by lazy {
+//        // This will fetch the connectivity manager use for checking the network info from the system
+//        NetworkStatusChecker(getSystemService(ConnectivityManager::class.java))
+//    }
+
 
     val title by lazy { this.getName()}
 
@@ -55,9 +64,15 @@ class OverviewViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<PokemonProperty>, t: Throwable) {
-                Log.i(title, t.localizedMessage!!)
-                liveDataError.postValue(t.localizedMessage)
-                inst.getResponse<String>(liveDataError)
+                try {
+                    Log.i(title, t.localizedMessage!!)
+                    liveDataError.postValue(t.localizedMessage)
+                    inst.getResponse<String>(liveDataError)
+
+                }catch (err: Exception){
+                    Log.i(title, "$t")
+                }
+
             }
 //            getAbilites
         })

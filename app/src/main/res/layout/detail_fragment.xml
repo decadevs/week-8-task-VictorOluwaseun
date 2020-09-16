@@ -17,6 +17,44 @@
     >
     <!--        android:layout_marginTop="414dp"-->
 
+
+    <TextView
+        android:id="@+id/tvOfflineMessage2"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ivMainPhotoImage"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="5dp"
+        android:text="You are offline"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:background="@color/colorError"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvOnlineMessage2"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ivMainPhotoImage"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="5dp"
+        android:text="You are back online"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:background="@color/colorSuccess"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+
+
     <ImageView
         android:id="@+id/ivMainPhotoImage"
         android:layout_width="0dp"
@@ -54,7 +92,6 @@
         android:id="@+id/cbAbilities"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/baloo_bhai"
         android:text="Abilities"
         app:layout_constraintBottom_toBottomOf="@+id/cbAll"
         app:layout_constraintEnd_toStartOf="@+id/cbForms"
@@ -68,7 +105,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:fontFamily="@font/baloo_bhai"
         android:text="Moves"
         app:layout_constraintBottom_toBottomOf="@+id/cbIndices"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +118,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:fontFamily="@font/baloo_bhai"
         android:text="Forms"
         app:layout_constraintBottom_toBottomOf="@+id/cbAbilities"
         app:layout_constraintEnd_toStartOf="@+id/cbIndices"
@@ -96,7 +131,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:fontFamily="@font/baloo_bhai"
         android:text="Indices"
         app:layout_constraintBottom_toBottomOf="@+id/cbForms"
         app:layout_constraintEnd_toStartOf="@+id/cbMoves"
@@ -127,10 +161,13 @@
 
     <TextView
         android:id="@+id/tvAbilites"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/archivo_black"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:padding="3dp"
+        android:textSize="20sp"
         android:text="Abillites"
         app:layout_constraintStart_toStartOf="@+id/cbAll"
         app:layout_constraintTop_toBottomOf="@+id/cbAll" />
@@ -140,7 +177,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/abril_fatface"
         android:text="Abillites Holders"
         app:layout_constraintStart_toStartOf="@+id/tvAbilites"
         app:layout_constraintTop_toBottomOf="@+id/tvAbilites" />
@@ -148,10 +184,13 @@
 
     <TextView
         android:id="@+id/tvForms"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/archivo_black"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:padding="3dp"
+        android:textSize="20sp"
         android:text="Forms"
         app:layout_constraintStart_toStartOf="@+id/tvAbilites"
         app:layout_constraintTop_toBottomOf="@+id/tvAbilitesSub" />
@@ -161,17 +200,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/abril_fatface"
         android:text="Forms sub"
         app:layout_constraintStart_toStartOf="@+id/tvForms"
         app:layout_constraintTop_toBottomOf="@+id/tvForms" />
 
     <TextView
         android:id="@+id/tvIndices"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:padding="3dp"
+        android:textSize="20sp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/archivo_black"
         android:text="Indices"
         app:layout_constraintStart_toStartOf="@+id/tvFormsSub"
         app:layout_constraintTop_toBottomOf="@+id/tvFormsSub" />
@@ -181,17 +222,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/abril_fatface"
         android:text="Indices holder"
         app:layout_constraintStart_toStartOf="@+id/tvIndices"
         app:layout_constraintTop_toBottomOf="@+id/tvIndices" />
 
     <TextView
         android:id="@+id/tvMoves"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/archivo_black"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:padding="3dp"
+        android:textSize="20sp"
         android:text="Moves"
         app:layout_constraintStart_toStartOf="@+id/tvIndicesSub"
         app:layout_constraintTop_toBottomOf="@+id/tvIndicesSub" />
@@ -201,7 +244,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/abril_fatface"
         android:text="Moves holder"
         app:layout_constraintStart_toStartOf="@+id/tvMoves"
         app:layout_constraintTop_toBottomOf="@+id/tvMoves" />

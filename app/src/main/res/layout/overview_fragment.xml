@@ -22,4 +22,40 @@
         app:spanCount="2"
         tools:itemCount="16"
         tools:listitem="@layout/grid_view_item" />
+
+    <TextView
+        android:id="@+id/tvOfflineMessage"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rvGrid"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="5dp"
+        android:text="You are offline"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:background="@color/colorError"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvOnlineMessage"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rvGrid"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="5dp"
+        android:text="You are back online"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:background="@color/colorSuccess"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
